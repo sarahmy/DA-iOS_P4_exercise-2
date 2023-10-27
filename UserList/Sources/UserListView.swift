@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct UserListView: View {
+    // TODO: - Those properties should be viewModel's OutPuts
     @State private var users: [User] = []
     @State private var isLoading = false
     @State private var isGridView = false
-    
+
+    // TODO: - The property should be declared in the viewModel
     private let repository = UserListRepository()
     
     var body: some View {
@@ -120,7 +122,8 @@ struct UserListView: View {
             self.fetchUsers()
         }
     }
-    
+
+    // TODO: - Should be a viewModel's input
     private func fetchUsers() {
         isLoading = true
         Task {
@@ -133,12 +136,14 @@ struct UserListView: View {
             }
         }
     }
-    
+
+    // TODO: - Should be an OutPut
     private func shouldLoadMoreData(currentItem item: User) -> Bool {
         guard let lastItem = users.last else { return false }
         return !isLoading && item.id == lastItem.id
     }
-    
+
+    // TODO: - Should be a viewModel's input
     private func reloadUsers() {
         users.removeAll()
         fetchUsers()
